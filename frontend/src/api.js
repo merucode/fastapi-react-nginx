@@ -1,7 +1,7 @@
-import { BACKEND_DB_TEST_URL } from "./urls";
+import { BACKEND_GRAPH_URL } from "./urls";
 import axios from "axios";
 
-export async function getItems() {
+export async function getItems({ stockCode, startDate, stopDate, reqCount }) {
   const req_config = {
 			headers: {
 			    "Content-type": "application/json",
@@ -9,9 +9,16 @@ export async function getItems() {
 		} 
 
   const response = await axios.get(
-	BACKEND_DB_TEST_URL,
+	BACKEND_GRAPH_URL,
+	{params: {
+			stockCode: stockCode,
+			startDate: startDate,
+			stopDate: stopDate,
+			reqCount: reqCount,
+			}
+	},	
 	req_config
-  )
+  );
   
   return response.data;
 }
