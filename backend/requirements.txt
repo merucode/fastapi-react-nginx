@@ -1,0 +1,7 @@
+fastapi==0.98
+uvicorn==0.22
+
+# DB
+sqlalchemy  
+psycopg2
+asyncpg

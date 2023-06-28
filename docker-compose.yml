@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    volumes:
+      - ${PWD}/frontend/:/usr/src/app/
+    expose:
+      - 3000
+    command: sh -c "npm install && npm run start"
+
+  backend:
+    container_name: backend
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    volumes:
+      - ${PWD}/backend/:/usr/src/app
+    expose:
+      - 8000
+    command: ["uvicorn", "main:app","--root-path", "/api","--host", "0.0.0.0", "--port", "8000", "--proxy-headers", "--reload"]
+    env_file:
+      - .backend.env
+
+  database:
+    container_name: database
+    build:
+      context: ./database/
+      dockerfile: Dockerfile
+    volumes:
+      - ${PWD}/database/postgresql:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+    env_file:
+      - .database.env
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx/
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+      - frontend
+
