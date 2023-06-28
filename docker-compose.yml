@@ -11,6 +11,8 @@ services:
     expose:
       - 3000
     command: sh -c "npm install && npm run start"
+    env_file:
+      - .frontend.env
 
   backend:
     container_name: backend
@@ -42,8 +44,11 @@ services:
     build:
       context: ./nginx/
       dockerfile: Dockerfile
+    volumes:
+      - ${PWD}/nginx/letsencrypt/:/etc/letsencrypt
     ports:
       - 80:80
+      - 443:443
     depends_on:
       - backend
       - frontend
