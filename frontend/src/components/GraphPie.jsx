@@ -86,8 +86,7 @@ function GraphPie ({ comWords }) {
         return {...obj};
     });
 
-    const colors = ["#FF0060", "#0A6EBD", "#00DFA2", "#884A39", "#FFC26F", "#080202", "#40128B"]
-
+    const colors = ["#FF0060", "#0079FF", "#00DFA2", "#FFE79B", "#FF8400","#DD58D6", "#080202", "#40128B"]
 
 
 	//rechart pie-chart-with-customized-active-shape

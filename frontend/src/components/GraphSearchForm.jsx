@@ -6,8 +6,8 @@ import useAsync from '../hooks/useAsync';
 function GraphSearchForm({ onSubmitSuccess }) {
 	const [stockCode, setStockCode] = useState("000001");
 	const [startDate, setStartDate] = useState("2023-06-01");
-	const [stopDate, setStopDate] = useState("2023-06-20");
-	const [reqCount, setReqCount] = useState(3);
+	const [stopDate, setStopDate] = useState("2023-06-06");
+	const [reqCount, setReqCount] = useState(4);
 	
 	const [isLoading, loadingError, getItemsAsync] = useAsync(getItems);
 
@@ -20,7 +20,7 @@ function GraphSearchForm({ onSubmitSuccess }) {
 		e.preventDefault();
         const result = await loadItems({ stockCode, startDate, stopDate, reqCount });
 		if (!result) return;
-		onSubmitSuccess(result);
+		onSubmitSuccess(result, stockCode);
 	};
 
 	return (
