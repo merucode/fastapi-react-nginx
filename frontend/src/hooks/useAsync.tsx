@@ -9,7 +9,7 @@ function useAsync(asyncFunction) {
       setPending(true);
       setError(null);
       try {
-		return await asyncFunction(...args);
+        return await asyncFunction(...args);
       } catch (error) {
         setError(error);
       } finally {

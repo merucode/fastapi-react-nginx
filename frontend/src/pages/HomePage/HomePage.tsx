@@ -3,13 +3,13 @@ import { getItems } from '../../api';
 import useAsync from '../../hooks/useAsync';
 
 function HomePage() {
-	const [items, setItems] = useState([]);
+    const [items, setItems] = useState([]);
     const [isLoading, loadingError, getItemsAsync] = useAsync(getItems);
 
-	const loadItems = useCallback(async () => {
+    const loadItems = useCallback(async () => {
 		const result = await getItemsAsync();
         setItems([...result]);
-	}, [getItemsAsync]);	
+	  }, [getItemsAsync]);	
 
     useEffect(() => {
         loadItems();
@@ -24,5 +24,10 @@ function HomePage() {
         <div>{loadingError?.message && <span>{loadingError.message}</span>}</div>
     </div>
     );
+    
+    return (
+        <h1>HomePage</h1>
+    );
 }
+
 export default HomePage;
