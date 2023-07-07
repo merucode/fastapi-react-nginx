@@ -13,10 +13,17 @@ def common_words_count(result_data_from_sql, reqCount) -> list:
     # Add dict with sum value if same key
     result_dict = dict(functools.reduce(operator.add,
         map(collections.Counter, words_dict_list)))
-   
-    # Sort by value
-    result_sorted_dict = sorted(result_dict.items(), key=lambda item: item[1], reverse = True) 
+
+    # Remove stopwords 
+    result_dict_remove_stopwords = dict()    
+    stopwords = ['col2', 'col6']
+    for key, value in result_dict.items():
+        if key not in stopwords:
+            result_dict_remove_stopwords[key] = value
     
+    # Sort by value
+    result_sorted_dict = sorted(result_dict_remove_stopwords.items(), key=lambda item: item[1], reverse = True) 
+
     # Handling case when reqCount is bigger than common word
     if len(result_sorted_dict) < reqCount:
         reqCount = len(result_sorted_dict)
