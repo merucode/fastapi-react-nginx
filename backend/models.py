@@ -1,10 +1,10 @@
-from sqlalchemy import Column, Integer, String, Text, Date
+from sqlalchemy import Column, String, Date, JSON
+
 from database import Base
 
-class TestModel(Base):
+class WordsCount(Base):
     __tablename__ = "test_table"
 
-    id = Column(Integer, primary_key=True)
-    name = Column(String, unique=True, nullable=False)
-    date = Column(Date, nullable=False)
-    value = Column(Integer, nullable=False)
+    date = Column(Date, nullable=False, primary_key=True)
+    words_count = Column(JSON, nullable=False)
+    code = Column(String, nullable=False)

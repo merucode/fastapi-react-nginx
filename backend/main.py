@@ -1,11 +1,11 @@
 from fastapi import FastAPI
 
-from domain.test import test_router
+from domain.words_count import words_count_router
 
 app = FastAPI(root_path="/api")
 
 @app.get("/")
-def hello():
+async def hello():
     return {"message": "Hello World!"}
 
-app.include_router(test_router.router)
+app.include_router(words_count_router.router)
