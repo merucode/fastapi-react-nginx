@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from 'react-router-dom';
 
 function Header() {
@@ -6,6 +5,7 @@ function Header() {
   <header>
     <div>
       <Link to="/">Web Link</Link>
+      <Link to="/graph">Graph</Link>
     </div>
   </header>
   );
